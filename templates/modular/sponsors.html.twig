@@ -1,0 +1,35 @@
+{% set grid_size = theme_var('grid-size') %}
+{% set columns = page.header.class == 'small' ? 'col-3 col-md-4 col-sm-6' : 'col-4 col-md-6 col-sm-12'  %}
+<section class="section modular-features modular-sponsors {{ page.header.class}}">
+        <section class="container {{ grid_size }}">
+            <div class="frame-box">
+
+                {{ content|raw }}
+
+                <div class="columns">
+                {% for sponsor in page.header.sponsors %}
+                   <div class="column {{ columns }}">
+                      
+
+                      {% if sponsor.url %}<a href="{{sponsor.url}}">{% endif %}
+                      {% if sponsor.logo %}
+                        {% set image = page.media[sponsor.logo] %}
+                        {{ image.html | raw }}
+                      {% endif %}
+                      <div class="feature-icon">
+                         <i class="fa fa-fw {{ sponsor.icon }}"></i>
+                         {% if sponsor.header %}
+                            <h6>{{ sponsor.header }}</h6>
+                         {% endif %}
+                      </div>
+                      {% if sponsor.url %}</a>{% endif %}
+                      <div class="feature-content">
+                         <p>&nbsp;{{ sponsor.text }}</p>
+                      </div>
+                   </div>
+                {% endfor %}
+                </div>
+                <a href="{{ page.header.link }}" class="btn btn-primary btn-lg">{{ page.header.linktekst }}</a>
+            </div>
+        </section>
+</section>

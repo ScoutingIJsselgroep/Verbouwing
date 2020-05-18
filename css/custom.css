@@ -1,0 +1,517 @@
+.card {
+    background: #fff;
+    margin-bottom: 25px;
+    border: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    box-shadow: 0 10px 45px -9px rgba(0,0,0,.1);
+    margin-right: 20px;
+}
+/**
+ * Calculator
+ */
+ 
+.input-euro {
+    position: relative;
+}
+.input-euro.left input {
+ padding-left:18px;
+}
+.input-euro:before {
+     position: absolute;
+     top: 0;
+     content:"€";
+ }
+ .input-euro.left:before {
+     left: 5px;
+     top: 9.5px;
+ }
+.modular-calculator .card {
+    background: #fff;
+    margin-bottom: 25px;
+    border: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    box-shadow: 0 10px 45px -9px rgba(0,0,0,.1);
+    margin-right: 20px;
+}
+.modular-calculator input {
+    max-width: 300px;
+}
+.modular-calculator #toggle-details {
+    font-weight: 600;
+    line-height: 1;
+    z-index: 1;
+    display: block;
+    margin: 0;
+    margin-top: 0px;
+    text-transform: uppercase;
+    color: rgb(48, 133, 238);
+    background: #fff;
+    cursor: pointer;
+}
+
+.modular-calculator .lgray {
+    background-color: rgba(128,128,128,.1);
+}
+
+.modular-calculator .gray {
+    background-color: rgba(48,133,238,.1);
+}
+/**
+ * Money
+ */
+.modular-money p {
+    text-align:center;
+}
+.modular-money h6 {
+    font-weight: 600;
+    line-height: 1;
+    z-index: 1;
+    display: block;
+    margin: 0;
+    text-transform: uppercase;
+    color: #667189;
+    background: #fff;
+}
+
+.modular-money .card {
+    background: #fff;
+    margin-bottom: 25px;
+    border: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    box-shadow: 0 10px 45px -9px rgba(0,0,0,.1);
+    margin-right: 20px;
+}
+
+.modular-money .columns {
+    justify-content: center;
+}
+
+
+.card-title span.counter {
+    font-size: 1rem;
+}
+
+.modular-money .progress {
+  width: 100%;
+  background-color: grey;
+}
+
+.modular-money .bar {
+  height: 30px;
+  background-color: #3085ee;
+  transition: width 2s;
+}
+/**
+ Hero
+ */
+.hero h1 {
+    font-size: 2rem;
+}
+
+.hero h2 {
+    font-size: 1.5rem;
+}
+
+/**
+ * Button animation
+ */ 
+ 
+.btn:hover {
+    padding: .3em 2em .3em .7em;
+    border: 2px solid transparent;
+}
+
+.btn:hover::after{
+    margin-left: 0;
+    opacity: 1;
+}
+
+.btn::after {
+    position: absolute;
+    margin-left: -1em;
+    opacity: 0;
+    text-shadow: none;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: none;
+    text-transform: none;
+    content: "\f054";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    transition: all .2s;
+} 
+
+.section.modular-features .columns a:hover {
+    text-decoration: none;
+}
+
+.section.modular-features img {
+    height: 100px;
+    width: auto;
+}
+
+.section.modular-features .feature-icon {
+    height: 10px;
+}
+
+.card-title h3,
+.card-title h4,
+.card-title h5 { 
+    margin-bottom: 0;
+}
+
+#map {
+    width: 100%;
+    height: 50vh;
+}
+
+#g-subfeature.map {
+    padding: 0;
+}
+
+#g-subfeature.map .g-content {
+    margin: 0;
+    padding: 0;
+}
+
+form input[type=text], form textarea, form input[type=email], form input[type=date], form input[type=tel], select {
+    width: 100%;
+    padding: 6px 6px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+form input[type=submit] {
+    cursor: pointer;
+}
+
+span.required {
+    color: #FF0000;
+}
+
+form .form-label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+form .checkboxes {
+    display: block;
+}
+
+form .checkboxes label {
+    padding: 0 0 0 30px;
+}
+
+/**
+ * Footer partial
+ */
+#footer {
+    padding: 1rem 1rem 1rem;
+    text-align: left;
+    color: #fff;
+}
+#footer.bg-grey {
+    background: #46413c;
+}
+
+#footer ul {
+    list-style: none;
+    padding-left: 0 !important;
+    margin-left: 0px;
+}
+
+#footer ul li a {
+    color: #fff;
+}
+#footer ul li a:hover {
+    text-decoration: none;
+}
+
+#footer ul li.last a {
+    border-bottom:none;
+}
+
+#footer h6 {
+    font-weight: 700;
+    color: #fff;
+    margin-top: 1rem;
+}
+
+#footer .signature {
+    margin-top: 1rem;
+    text-align: center;
+    color: #fff;
+}
+
+#footer .signature a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/**
+ * Fix content blocks for text block.
+ */
+.modular-text .container .columns {
+    align-items: center;
+}
+
+.modular-text h1, .modular-text h2, .modular-text h3, .modular-text h4, .modular-text h5, .modular-text h6 {
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
+} 
+
+.modular-text .container .column {
+    padding: 0rem 1rem;
+}
+
+.modular-text .container a.btn {
+    text-align: center;
+}
+
+/**
+ * Mobile menu
+ */
+.mobile-container li a {
+    color: #fff;
+}
+
+.mobile-logo, .navbar-brand {
+    width: 100%;
+    text-align: center;
+    padding-right: 30px;
+}
+
+body:not(.header-transparent):not(.mobile-nav-open) .navbar-brand img, body.header-transparent .scrolled .navbar-brand img {
+    /*filter: invert(0.9);*/
+}
+
+body.header-transparent .section:not(.scrolled) .navbar-brand img, body.mobile-nav-open .section:not(.scrolled) .navbar-brand img {
+    -webkit-filter: contrast(0) brightness(2);
+    filter: contrast(0) brightness(2);
+    transition: 1s;
+}
+
+.mobile-menu .button_container .top {
+    background: #0042df;
+}
+
+.mobile-menu .button_container .middle {
+    background: #004a3d;
+}
+
+.mobile-menu .button_container .bottom {
+    background: #f2ca06;
+}
+
+.mobile-menu .button_container.active .top {
+    background: #0042df;
+}
+
+.mobile-menu .button_container.active .bottom {
+    background: #f2ca06;
+}
+
+.mobile-menu .button_container:hover {
+    opacity: 1.0;
+}
+
+/**
+ *
+ */
+.blog-listing .content-title p {
+    margin: 0 0 0;
+}
+
+/**
+ * Klus aanmelden
+ */
+ .modular-features.offset-box .frame-box {
+     padding: 1rem 4rem 7rem 4rem;
+     
+ }
+.modular-klus-aanmelden.offset-box .frame-box {
+    
+    margin: 0rem -1.4rem 0rem;
+    padding: 1rem 4rem;
+    background: #fff;
+    box-shadow: 0 0 75px 0 rgba(69,77,93,.1);
+    
+}
+.modular-klus-aanmelden.offset-box .frame-box h3 {
+    text-align: center;
+}
+
+.section.blog-listing .tags {
+    float: left;
+}
+/**
+ * Newsletter modular
+ */
+.modular-newsletter:not(.offset-box) .container {
+}
+.modular-newsletter.offset-box .frame-box {
+    margin: -3rem -1.4rem 3rem;
+    padding: 1rem 4rem;
+    background: #fff;
+    box-shadow: 0 0 75px 0 rgba(69,77,93,.1);
+}
+.modular-newsletter a {
+    display: inline-block;
+}
+.modular-newsletter.offset-box h3 i {
+    color: #acb3c2;
+}
+.modular-newsletter.offset-box .social-media-icon {
+    font-size: 40px;
+    color: #acb3c2;
+}
+
+.modular-newsletter.offset-box .social-media-icon:hover {
+    color: #3085ee;
+}
+
+.modular-newsletter:not(.offset-box) {
+    background: #0d709a;
+    margin: 0rem -1.4rem 0rem;
+    color: #fff;
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.modular-newsletter:not(.offset-box) .social-media-icon {
+    font-size: 40px;
+    color: #fff;
+}
+
+.modular-newsletter:not(.offset-box) h3 {
+    color: #fff;
+}
+
+.modular-newsletter:not(.offset-box) h3 i {
+    color: #cdcdcd;
+}
+
+.modular-newsletter:not(.offset-box) .social-media-icon:hover {
+    color: #cdcdcd;
+}
+
+.modular-newsletter:not(.offset-box) .container {
+    padding: 1rem 1.5rem
+}
+
+/**
+ * Blog item
+ */
+.card-image .static {
+  position:absolute;
+  background: white;
+  width: inherit;
+}
+
+.card-image .static:hover {
+  opacity:0;
+}
+
+.gif-rows img {
+  cursor: pointer;
+}
+
+.gif-rows .gif-file {
+  display: none;
+}
+
+/**
+ * Persons
+ */
+.modular-person .card {
+    background: #fff;
+    margin-bottom: 25px;
+    border: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    box-shadow: 0 10px 45px -9px rgba(0,0,0,.1);
+    margin-right: 20px;
+}
+
+.modular-person .columns {
+    justify-content: center;
+}
+
+.modular-person .card .card-footer {
+    text-align: center;
+}
+
+.card .card-header, .card .card-body {
+    text-align: center;
+}
+
+.modular-person img {
+    width: 100%;
+}
+
+.img-rounded {
+    border-radius: 50%;
+}
+
+.contact-person {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contact-person img {
+    width: 60px;
+    margin-right: 10px;
+}
+
+.contact-person div {
+
+}
+
+/**
+ * Donators
+ */
+.section.modular-person.small.donateurs {
+    
+}
+
+.section.modular-person.small.donateurs .card  {
+    background-color: #d9d9d9;
+    background-image: linear-gradient(315deg, #d9d9d9 0%, #f6f2f2 74%);
+    padding-bottom: 0.6rem;
+}
+
+/**
+ Features
+ */
+.modular-sponsors .columns {
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.modular-sponsors img {
+    height: auto !important;
+    width: 100% !important;
+}
+
+.modular-sponsors .feature-content p {
+    height: 48px;
+}
+
+.modular-features.small .feature-icon i {
+    margin: 0 auto 0rem;
+}
+
+.modular-features .col-4 {
+    height: 80px;
+    margin-top: 10px;
+}

@@ -1,0 +1,46 @@
+{% set grid_size = theme_var('grid-size') %}
+{% set columns = page.header.class == 'small' ? 'col-3 col-md-3 col-sm-6' : 'col-4 col-md-6 col-sm-12'  %}
+{% set persons = page.header.persons %}
+<section class="section modular-person {{ page.header.class }} {{ page.header.body_classes }}">
+        <section class="container {{ grid_size }}">
+            <div class="frame-box">
+                <h2 class="text-center">{{ header.title|raw }}</h2>
+                <p class="text-center">
+                    {{ content|raw }}
+                </p>
+                <div class="columns">
+                    
+                {% for person in persons|sort((a, b) => a.header > b.header) %}
+                    <div class="card column {{ columns }}">
+                        <div class="card-image">
+                            {% if person.image %}
+                                {% set image = page.media[person.image] %}
+                                {{ image.html | raw }}
+                            {% endif %}
+                        </div>
+                        <div class="card-header">
+                            <div class="card-subtitle text-gray">
+                            </div>
+                            <div class="card-title">
+                                {% if person.header %}
+                                    <h4 class="p-name mt-1">{{ person.header }}</h4>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% if person.text %}
+                        <div class="card-body">
+                            <p>{{ person.text }}</p>
+                            <p><a href="{{person.link}}">{{person.linktext}}</a></p>
+                        </div>
+                        {% endif %}
+                        {% if page.header.contact %}
+                            <div class="card-footer">
+                                <a href="/contact" class="btn btn-primary">Neem contact op</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
+</section>

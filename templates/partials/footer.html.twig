@@ -1,0 +1,45 @@
+<section id="footer" class="section bg-grey">
+    <section class="container {{ grid_size }}">
+        <div class="columns">
+            <div class="column col-5 col-md-12">
+                <h6>{{ theme_var('leftfooter_text') }}</h6>
+                <ul>
+                    {% for footeritem in theme_var('leftfooter_items') %}
+                        <li>
+                            <a href="{{ footeritem.url }}" target="{{ footeritem.target }}">
+                                {{ footeritem.text }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="column col-5 col-md-12">
+                <h6>{{ theme_var('middlefooter_text') }}</h6>
+                <ul>
+                    {% for footeritem in theme_var('middlefooter_items') %}
+                        <li>
+                            <a href="{{ footeritem.url }}" target="{{ footeritem.target }}">
+                                {{ footeritem.text }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="column col-2 col-md-12">
+                <h6>{{ theme_var('rightfooter_text') }}</h6>
+                <ul>
+                    {% for footeritem in theme_var('rightfooter_items') %}
+                        <li>
+                            <a href="{{ footeritem.url }}" target="{{ footeritem.target }}">
+                                {{ footeritem.text }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="signature">
+            {{ theme_var('signature') | raw }}
+        </div>
+    </section>
+</section>

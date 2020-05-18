@@ -1,0 +1,50 @@
+title: Sponsors
+'@extends': default
+
+form:
+  fields:
+    tabs:
+      fields:
+        sponsors:
+          type: tab
+          title: Sponsors
+          fields:
+            header.class:
+              type: select
+              label: Layout
+              default: small
+              size: medium
+              options:
+                small: Small   = 4 / 3 / 2 columns
+                standard: Standard  = 3 / 2 / 1 columns
+            
+            header.link: 
+              type: text
+              label: Link
+              
+            header.linktekst:
+              type: text
+              label: Linktekst
+
+            header.sponsors:
+              name: sponsors
+              type: list
+              label: Sponsors
+
+              fields:
+                .icon:
+                  type: iconpicker
+                  label: Icon
+                .logo: 
+                  type: filepicker
+                  label: Sponsor logo
+                  preview_images: true
+                .header:
+                  type: text
+                  label: Header
+                .text:
+                  type: text
+                  label: Text
+                .url:
+                  type: text
+                  label: Link

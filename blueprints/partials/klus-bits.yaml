@@ -1,0 +1,25 @@
+extends@: 'partials/blog-bits'
+
+form:
+  fields:
+    klus_title:
+      type: spacer
+      title: Klus Section
+      
+    header.timerange:
+        type: text
+        size: medium
+        label: Tijdsspanne
+        default: null
+        
+    header.persons_available:
+        type: number
+        size: medium
+        label: Personen aangemeld
+        default: 0
+        
+    header.persons_required:
+        type: number
+        size: medium
+        label: Personen vereist 
+        default: null

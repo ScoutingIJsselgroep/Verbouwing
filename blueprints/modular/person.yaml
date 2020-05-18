@@ -1,0 +1,47 @@
+title: Persons
+'@extends': default
+
+form:
+  fields:
+    tabs:
+      fields:
+        persons:
+          type: tab
+          title: Persons
+          fields:
+            header.class:
+              type: select
+              label: Layout
+              default: small
+              size: medium
+              options:
+                small: Small   = 3 / 3 / 2 columns
+                'small offset-box': Small offset-box   = 3 / 3 / 2 columns
+                standard: Standard  = 3 / 2 / 1 columns
+            
+            header.persons:
+              name: persons
+              type: list
+              label: Persons
+
+              fields:
+                .image:
+                    type: filepicker
+                    label: Foto
+                    preview_images: true
+                    acccept:
+                     - .png
+                     - .jpg
+                .animateimage:
+                    type: filepicker
+                    label: Animatefoto
+                    preview_images: true
+                    acccept:
+                     - .png
+                     - .jpg
+                .header:
+                  type: text
+                  label: Naam
+                .text:
+                  type: text
+                  label: Omschrijving

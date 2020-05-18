@@ -1,0 +1,60 @@
+{% extends 'partials/base.html.twig' %}
+{% set blog = page.find(theme_var('blog-page')|default('/materiaal')) %}
+{% set show_breadcrumbs = header_var('show_breadcrumbs', [page, blog]) %}
+{% set show_sidebar = header_var('show_sidebar', [page, blog]) %}
+{% set show_pagination = header_var('show_pagination', [page, blog]) %}
+{% set hero_image_name = page.header.hero_image %}
+
+
+{% if hero_image_name %}
+    {% block hero %}
+        {% set hero_image = page.media[hero_image_name] %}
+        {% set content %}
+            <h1>{{ page.title }}</h1>
+            <h2>{{ page.header.subtitle }}</h2>
+            {% include 'partials/blog/taxonomy.html.twig' %}
+        {% endset %}
+        {% include 'partials/hero.html.twig' with {id: 'blog-hero'} %}
+    {% endblock %}
+{% endif %}
+
+{% block body %}
+    <section id="body-wrapper" class="section blog-listing">
+        <section class="container {{ grid_size }}">
+
+            {% if show_breadcrumbs and config.plugins.breadcrumbs.enabled %}
+                {% include 'partials/breadcrumbs.html.twig' %}
+            {% endif %}
+
+            {% embed 'partials/layout.html.twig' %}
+                {% block item %}
+                    {% include 'partials/materiaal-item.html.twig' %}
+                    {# check to display CC License - hibbittsdesign.org #} {# check to display git sync link in page - hibbittsdesign.org #}
+                    {% if theme_var('display_of_git_sync_repo_link') == 'page' and not (grav.uri.param('summaryonly') or grav.uri.param('onlysummary')) %}
+                        <p>{% include 'partials/git_sync_repo_link_note.html.twig' %}</p>
+                    {% endif %}
+                    {% if not (grav.uri.param('chromeless') or grav.uri.param('embedded')) and not(theme_var('chromeless.enabled')) and (theme_var('cc_license.enabled') and not(page.header.hide_cc_license) and not (grav.uri.param('onlysummary'))) %}
+                        <p>{% include 'partials/creative_commons_license.html.twig' %}</p>
+                    {% endif %}
+                {% endblock %}
+                {# check content display flag - hibbittsdesign.org #}
+                {% if not (grav.uri.param('chromeless') or grav.uri.param('embedded')) and not(theme_var('chromeless.enabled')) %}
+                    {% block sidebar %}
+                        {% include 'partials/sidebar.html.twig' %}
+                    {% endblock %}
+                {% endif %}
+            {% endembed %}
+
+        </section>
+    </section>
+    
+    <section class="section modular-klus-aanmelden small offset-box">
+        <section class="container grid-lg">
+            <div class="frame-box">
+                <h3 id="contact">Kun jij {{ page.title|lowercase }} regelen?</h3>
+                <p>Heb jij toevallig nog {{ page.title|lowercase }} liggen, of weet jij waar we dit kunnen regelen? Neem dan contact op! Vanzelfsprekend is het mogelijk om te sponsoren door deze materialen ‘om niet’ of tegen een gereduceerd tarief te leveren.</p>
+                {% include "forms/form.html.twig" with {form: forms('materiaal'), name: page.title} %}
+            </div>
+        </section>
+    </section>
+{% endblock %}

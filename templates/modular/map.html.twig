@@ -1,0 +1,60 @@
+<section class="section modular-map">
+    <div id="map" style="position: relative; overflow: hidden;"></div>
+<script>
+        function initMap() {
+            
+            var styledMapType = new google.maps.StyledMapType(
+[ { "featureType": "administrative.land_parcel", "elementType": "labels", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi", "elementType": "labels.text", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi.business", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi.park", "elementType": "labels.text", "stylers": [ { "visibility": "off" } ] }, { "featureType": "road.local", "elementType": "labels", "stylers": [ { "visibility": "off" } ] } ]
+            );
+            var ijsselgroep = {lat: 52.1997968, lng: 6.2130802};
+            var mapCenter = {lat: 52.1999193, lng: 6.2094074};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: mapCenter,
+                mapTypeControlOptions: {
+                    mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'styled_map']
+                },
+                zoomControl: true,
+                mapTypeControl: false,
+                scaleControl: true,
+                streetViewControl: false,
+                rotateControl: true,
+                fullscreenControl: false,
+                scrollwheel: false,
+                draggable: true,
+                disableDoubleClickZoom: false
+            });
+            map.mapTypes.set('styled_map', styledMapType);
+            map.setMapTypeId('styled_map');
+            
+            var image = {
+                url: 'http://www.scouting-ijsselgroep.nl/assets/marker.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                scaledSize: new google.maps.Size(64, 64),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(32, 64)
+            };
+            var contentString = '<div id="content">' +
+                '<strong>Scouting IJsselgroep</strong><br />Kwekerijweg 5<br />7213 AX Gorssel' +
+                '</div>';
+            
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+            
+            var marker = new google.maps.Marker({
+                position: ijsselgroep,
+                map: map,
+                title: 'Scouting IJsselgroep'
+            });
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+infowindow.open(map, marker);
+        }
+    </script>
+    <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnGxsiLGRQchzp2X2W-94kZLGQVhjQKD4&amp;callback=initMap">
+    </script>
+</section>

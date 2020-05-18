@@ -1,0 +1,15 @@
+{% if page.header.persons_required %}
+    {% if page.header.persons_required == page.header.persons_available %}
+        <span class="tags">
+            <a class="label label-rounded {{ label_style ?: 'label-success' }} p-category">{{ page.header.persons_available|default('0')}}/{{ page.header.persons_required }} personen</a>
+        </span>
+    {% elseif page.header.persons_required < (page.header.persons_available/3)*4 %}
+        <span class="tags">
+            <span class="label label-rounded {{ label_style ?: 'label-warning' }} p-category">{{ page.header.persons_available|default('0')}}/{{ page.header.persons_required }} personen</span>
+        </span>
+    {% else %}
+        <span class="tags">
+            <span class="label label-rounded {{ label_style ?: 'label-error' }} p-category">{{ page.header.persons_available|default('0')}}/{{ page.header.persons_required }} personen</span>
+        </span>
+    {% endif %}
+{% endif %}

@@ -1,0 +1,83 @@
+{% if page.header.hide_from_post_list != true %}
+  <div class="card">
+      {% set image = page.media.images|first %}
+      {% if image and ((page.header.header_image is not defined) or (page.header.header_image))  %}
+      <div class="card-image">
+        {# support image credit tag with optional image meta file - hibbittsdesign.org #}
+          {% set image_alt_text = page.header.header_image_alt_text %}
+          {% if page.header.header_image_credit %}
+            {% set image_credit = page.header.header_image_credit %}
+            {% set image_creditlink = page.header.header_image_creditlink %}
+          {% elseif header_image_media.meta.header_image_credit  %}
+            {% set image_credit = header_image_media.meta.header_image_credit %}
+            {% set image_creditlink = header_image_media.meta.header_image_creditlink %}
+            {% set image_alt_text = header_image_media.meta.header_image_alt_text %}
+          {% endif %}
+          {% if image_credit %}
+            <div class="image-credit-wrapper"><span class="image-credit">
+              {% if image_creditlink %}
+                Image: <a class="newwindow external-link" href="{{ image_creditlink }}">
+                {{ image_credit }}</a></span>
+                <a href="{{ page.url }}"><img src="{{ image.cropZoom(800,400).url }}" alt="{{ image_alt_text }}"></a>
+              {% else %}
+                Image: {{ image_credit }}</span>
+                <a href="{{ page.url }}"><img src="{{ image.cropZoom(800,400).url }}" alt="{{ image_alt_text }}"></a>
+              {% endif %}
+            </div>
+          {% else %}
+            <a href="{{ page.url }}" class="gif-rows">
+            {% if page.header.animated_image_file %}
+                <img class="preset-file" src="{{ image.cropZoom(800,400).url }}" alt="{{ image_alt_text }}">
+                <img class="gif-file" src="{{ page.media[page.header.animated_image_file].cropZoom(800,400).url  }}" alt="{{ image_alt_text }}">
+            {% else %}
+                <img src="{{ image.cropZoom(800,400).url }}" alt="{{ image_alt_text }}">
+            {% endif %}
+            </a>
+          {% endif %}
+
+      </div>
+      {% endif %}
+      <div class="card-header">
+          <div class="card-subtitle text-gray">
+              {% if not ('klussen' in page.url or 'materiaal' in page.url) %}
+                {% include 'partials/blog/date.html.twig' %}
+              {% endif %}
+              {% if config.plugins.readingtime.enabled %}
+                <span class="blogitem__readingtime">{% include 'partials/blog/readingtime.html.twig' %}</span>
+              {% endif %}
+      </div>
+      <div class="card-title">
+          {% include 'partials/blog/title.html.twig' with {title_level: 'h4'} %}
+          </div>
+      </div>
+      <div class="card-body">
+          {% if page.summary != page.content %}
+              {{ page.summary|raw }}
+              {% if page.header.continue_link is same as(true) %}
+                <a href="{{ page.url }}" title="{{ page.title }}" class="btn btn-primary">{{ 'THEME_QUARK.BLOG.ITEM.CONTINUE_READING'|t }}</a>
+              {% endif %}
+          {% else %}
+              {{ page.content|raw }}
+          {% endif %}
+      </div>
+      <div class="card-footer">
+          {% include 'partials/blog/taxonomy.html.twig' %}
+          {% include 'partials/blog/persons.html.twig' %}
+          {% include 'partials/blog/timerange.html.twig' %}
+          {% if 'klussen' in page.url %}
+            <a href="{{ page.url }}" title="{{ page.title }}#ik-help" class="btn btn-secondary">Ik help mee!</a> 
+          {% endif %}
+      </div>
+  </div>
+  <script>
+    $(".gif-rows").on('mouseover', function(e) {
+        console.log(e);
+        $(e.target, '.preset-file').hide();
+        $(e.target, '.gif-file').show();
+    }).on('mouseout', function() {
+        console.log(e);
+        $(e.target).children('.preset-file').show();
+        $(e.target).children('.gif-file').hide();
+    });
+  </script>
+{% endif %}

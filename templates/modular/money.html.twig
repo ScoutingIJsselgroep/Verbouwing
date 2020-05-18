@@ -1,0 +1,52 @@
+{% set grid_size = theme_var('grid-size') %}
+{% set columns = page.header.class == 'small' ? 'col-3 col-md-3 col-sm-6' : 'col-3 col-md-5 col-sm-12'  %}
+{% do assets.add('theme://js/countup.js') %}
+{% do assets.add("https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js") %}
+
+<section class="section modular-money {{ page.header.class }}">
+        <section class="container {{ grid_size }}">
+            <div class="frame-box">
+                <h2 class="text-center">{{ header.title|raw }}</h2>
+                <p class="text-center">
+                    {{ content|raw }}
+                </p>
+                <div class="columns">
+                {{ dump(content) }}
+                
+                 {% for money in theme_var('money') %}
+                    <div class="card column {{ columns }} aos-init aos-animate" data-aos-once="true" data-aos="zoom-in">
+                        <div class="card-header">
+                            <div class="card-subtitle text-gray">
+                            </div>
+                            <div class="card-title">
+                                {% if money.text %}
+                                    <h6 class="p-name mt-1">{{ money.text }}</h6>
+                                    <span class="counter" style="display: inline-block;">€ {{ money.amount }}</span>
+                                    <div class="progress mt-1">
+                                      <div class="bar" style="width: {{ min(100, (money.amount/(money.amountmax + 1))*100) }}%"></div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="card-body">
+                        </div>
+                     </div>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
+</section>
+
+<script>
+document.addEventListener('aos:in', ({ event, detail }) => {
+    const $counters = $(detail).find(".counter");
+    
+    /* Start counting, do this on DOM ready or with Waypoints. */
+    $counters.each(function (ignore, counter) {
+        counterUp(counter, {
+            duration: 500,
+            delay: 16
+        });
+    });
+});
+</script>

@@ -1,0 +1,36 @@
+title: Money
+'@extends': default
+
+form:
+  fields:
+    tabs:
+      fields:
+        moneys:
+          type: tab
+          title: Money
+          fields:
+            header.class:
+              type: select
+              label: Layout
+              default: small
+              size: medium
+              options:
+                small: Small   = 3 / 3 / 2 columns
+                'small offset-box': Small offset-box   = 3 / 3 / 2 columns
+                standard: Standard  = 3 / 2 / 1 columns
+            
+            header.moneys:
+              name: moneys
+              type: list
+              label: Moneys
+
+              fields:
+                .text:
+                  type: text
+                  label: Naam
+                .amount:
+                  type: text
+                  label: Hoeveelheid
+                .amountmax:
+                  type: text
+                  label: Doel

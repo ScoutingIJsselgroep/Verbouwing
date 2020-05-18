@@ -1,0 +1,139 @@
+{% set grid_size = theme_var('grid-size') %}
+{% set columns = page.header.class == 'small' ? 'col-3 col-md-3 col-sm-6' : 'col-3 col-md-5 col-sm-12'  %}
+
+<section class="section modular-calculator {{ page.header.class }}">
+    <section class="container {{ grid_size }}">
+        
+        <div class="frame-box">
+            
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="card-subtitle text-gray">
+                </div>
+                <div class="card-title">
+                    <h3 class="text-center mb-1">{{ header.title|raw }}</h3>
+                </div>
+            </div>
+            <div class="card-body mt-0">
+                <p class="text-center">
+                    {{ content|raw }}
+                </p>
+                <form>
+                    <div class="form-field">
+                        <div class="form-label">
+                            <label class="inline">
+                                Bedrag 
+                            </label>
+                        </div>
+                        <div class="form-data" data-grav-field="number" data-grav-disabled="" data-grav-default="null">
+                            <div class="form-input-wrapper">
+                                <input name="bedrag" value="1000" type="text" class=" " placeholder="Vul uw gift in" required="required">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+                <h4>Uitleg</h4>
+                <span class="rekenvoorbeeld-samenvatting"></span>
+                <br/><br/>
+                <!--<a id="toggle-details">Toon berekening</a>-->
+                <br/>
+                <table class="table rekenvoorbeeld" style="display: none;">
+                    <colgroup>
+                        <col />
+                        <col />
+                        <col />
+                        <col class="gray" />
+                        <col class="gray" />
+                        <col class="lgray" />
+                        <col class="lgray" />
+                    </colgroup>
+                    <thead>
+                        <th>Jaar</th>
+                        <th>Aflossing</th>
+                        <th>Restschuld</th>
+                        <th>Aftrek maximaal</th>
+                        <th>Bijdrage BD</th>
+                        <th>Aftrek minimaal</th>
+                        <th>Bijdrage BD</th>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</section>
+<script>
+    const formatter = new Intl.NumberFormat('nl-NL', {
+      style: 'currency',
+      currency: 'EUR',
+      minimumFractionDigits: 2
+    });
+    const formtter_percent = new Intl.NumberFormat('nl-NL', {
+      style: 'percent',
+      minimumFractionDigits: 2
+    })
+    
+    //$('#toggle-details').on('click', function (e) {
+    //    $('.table.rekenvoorbeeld').toggle();
+    //});
+    
+    function generate_rekenvoorbeeld(value) {
+        const jaar = [2020, 2021, 2022, 2023, 2024];
+        const aflossing = value / 5;
+        const restschuld = [aflossing * 4, aflossing * 3, aflossing * 2, aflossing * 1, aflossing * 0];
+        const max_aftrek = [46, 43, 40, 37.1, 37.1];
+        const min_aftrek = [37.1, 37.1, 37.1, 37.1, 37.1];
+        
+        let table_array = "";
+        
+        for (let i = 0; i < 5; i++) {
+            table_array += (
+                `<tr>
+                    <td>${jaar[i]}</td>
+                    <td>${formatter.format(aflossing)}</td>
+                    <td>${formatter.format(restschuld[i])}</td>
+                    <td>${formtter_percent.format(max_aftrek[i]/100)}</td>
+                    <td>${formatter.format(max_aftrek[i]/100 * aflossing)}</td>
+                    <td>${formtter_percent.format(min_aftrek[i]/100)}</td>
+                    <td>${formatter.format(min_aftrek[i]/100 * aflossing)}</td>
+                </tr>`
+            );
+        }
+        
+        const max_kosten = (max_aftrek[0]/100 * aflossing) + (max_aftrek[1]/100 * aflossing) + (max_aftrek[2]/100 * aflossing) + (max_aftrek[3]/100 * aflossing) + (max_aftrek[4]/100 * aflossing);
+        const min_kosten = (min_aftrek[0]/100 * aflossing) + (min_aftrek[1]/100 * aflossing) + (min_aftrek[2]/100 * aflossing) + (min_aftrek[3]/100 * aflossing) + (min_aftrek[4]/100 * aflossing);
+        
+        table_array += (
+                `<tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Totaal</td>
+                    <td>${formatter.format(max_kosten)}</td>
+                    <td>Totaal</td>
+                    <td>${formatter.format(min_kosten)}</td>
+                </tr>`
+            );
+        
+        // $('table.rekenvoorbeeld tbody').html(table_array);
+        
+        $('.rekenvoorbeeld-samenvatting').html(`Als je <strong>${formatter.format(value)}</strong> schenkt, dan kost dit slechts tussen <strong>${formatter.format(value-max_kosten)}</strong> en <strong>${formatter.format(value - min_kosten)}</strong>. Bij de Belastingdienst kun je deze gift als periodieke gift aftrekken, met een voordeel oplopend tot <strong>${formatter.format(max_kosten)}</strong>. <br/> Door jouw gift(en) daalt het box 1 inkomen. Dit kan leiden tot hogere fiscale heffingskorting(en), waardoor je (iets) minder belasting hoeft te betalen. Hoeveel dit scheelt is afhankelijk van jouw persoonlijke situatie. Hierover kun je het beste terecht bij jouw fiscalist. Voor meer informatie kun je contact opnemen via <a href="mailto:financiering@scouting-ijsselgroep.nl">financiering@scouting-ijsselgroep.nl</a>.`);
+        
+    }
+    
+    generate_rekenvoorbeeld(1000);
+
+    $('input[name=bedrag]').on('input', function(event){
+        const value = parseFloat(event.target.value);
+        if (isNaN(value)) {
+            return;
+        }
+        
+        generate_rekenvoorbeeld(value);
+    });
+</script>
